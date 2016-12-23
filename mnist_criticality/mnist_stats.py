@@ -1,9 +1,9 @@
 
-import tflearn
-from tflearn.layers.core import input_data, dropout, fully_connected
-from tflearn.layers.conv import conv_2d, max_pool_2d
-from tflearn.layers.normalization import local_response_normalization
-from tflearn.layers.estimator import regression
+import utils.tflearn
+from utils.tflearn.layers.core import input_data, dropout, fully_connected
+from utils.tflearn.layers.conv import conv_2d, max_pool_2d
+from utils.tflearn.layers.normalization import local_response_normalization
+from utils.tflearn.layers.estimator import regression
 
 
 class MnistStats(object):
@@ -24,10 +24,10 @@ class MnistStats(object):
         self.params = params if params is not None else {'tensorboard_verbose': 3,
                                                          'tensorboard_dir': "mnist_criticality/tensorboard_dir"}
         self.network = self.build_network()
-        self.model = tflearn.DNN(self.network,
-                                 tensorboard_verbose=self.params['tensorboard_verbose'],
-                                 tensorboard_dir=self.params['tensorboard_dir'],
-                                 )
+        self.model = utils.tflearn.DNN(self.network,
+                                       tensorboard_verbose=self.params['tensorboard_verbose'],
+                                       tensorboard_dir=self.params['tensorboard_dir'],
+                                       )
 
     def build_network(self):
         # Building convolutional network
